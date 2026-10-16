@@ -155,6 +155,23 @@ The driver's position is in the `latitude` / `longitude` attributes of `sensor.g
 
 ---
 
+## Live check (no Home Assistant, no HACS)
+
+`scripts/live_check.py` runs the integration's own API client and order parser against Grab's real endpoints using your token, so you can see what Singapore actually returns before installing anything.
+
+```bash
+pip install aiohttp
+export GRAB_ACCESS_TOKEN='eyJ...'      # the value after "Bearer "
+export GRAB_REFRESH_TOKEN='...'        # optional
+python scripts/live_check.py
+```
+
+Run it while an order is in progress for the full result. Otherwise it can only confirm the endpoint answers and the token is accepted. By default it prints just the *shape* of Grab's responses (key names and value types) and whether each sensor field was populated, which is safe to paste into an issue. Add `--show-values` or `--show-body` to see real data (these include your address and driver name).
+
+If an endpoint has moved, you can try a different one without editing code: `--active-url URL` or `--food-base URL`.
+
+---
+
 ## How it works
 
 ```

@@ -9,6 +9,8 @@
 - Price parsing handles `S$` / `SGD` / `$`
 - Token instructions point to food.grab.com/sg
 - API endpoints inherited from the Thailand version and not yet verified against Singapore
+- Add `scripts/live_check.py` to test against Grab's real endpoints without Home Assistant
+- Fix: order-status enum sensor no longer errors on a state Grab sends that we don't recognise; it shows `unknown` and exposes the raw value as the `raw_status` attribute
 
 ## [1.0.16] - 2026-07-01
 

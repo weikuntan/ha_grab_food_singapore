@@ -36,8 +36,18 @@ SENSOR_DESCRIPTIONS: tuple[GrabFoodSensorEntityDescription, ...] = (
         icon="mdi:moped",
         device_class=SensorDeviceClass.ENUM,
         options=ORDER_STATES,
-        value_fn=lambda d: d.get("status", "no_active_order"),
-        extra_attrs_fn=lambda d: {"order_id": d.get("order_id", "")},
+        # An ENUM sensor must only report listed options. Grab may send states we
+        # don't know yet, so unrecognised ones show as "unknown" and the raw
+        # value is exposed in the raw_status attribute.
+        value_fn=lambda d: (
+            d.get("status", "no_active_order")
+            if d.get("status", "no_active_order") in ORDER_STATES
+            else None
+        ),
+        extra_attrs_fn=lambda d: {
+            "order_id": d.get("order_id", ""),
+            "raw_status": d.get("status", "no_active_order"),
+        },
     ),
     GrabFoodSensorEntityDescription(
         key="restaurant_name",

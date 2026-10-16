@@ -1,0 +1,14 @@
+{
+  "domain": "grab_food_sg",
+  "name": "Grab Food Singapore",
+  "codeowners": [],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/weikuntan/ha_grab_food_singapore",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/weikuntan/ha_grab_food_singapore/issues",
+  "requirements": [
+    "aiohttp>=3.8.0"
+  ],
+  "version": "0.1.0"
+}

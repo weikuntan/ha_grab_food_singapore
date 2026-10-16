@@ -10,25 +10,28 @@ from typing import Any
 import aiohttp
 
 from .const import (
+    COUNTRY_ISO,
+    DEFAULT_COUNTRY_CODE,
     GRAB_ORDER_DETAIL,
     GRAB_ORDERS_ACTIVE,
     GRAB_ORDERS_HISTORY,
     GRAB_OTP_REQUEST,
     GRAB_OTP_VERIFY,
     GRAB_TOKEN_REFRESH,
+    LOCALE,
 )
 
 _LOGGER = logging.getLogger(__name__)
 
 # Grab mobile app headers (Android user-agent, required for API access)
 _COMMON_HEADERS = {
-    "User-Agent": "Grab/5.302.0 (Android 14; sdk_gphone64_arm64; en_TH)",
+    "User-Agent": f"Grab/5.302.0 (Android 14; sdk_gphone64_arm64; {LOCALE})",
     "Accept": "application/json",
     "Content-Type": "application/json",
     "X-Platform": "Android",
     "X-App-Version": "5.302.0",
-    "X-Country-Code": "TH",
-    "X-Locale": "en_TH",
+    "X-Country-Code": COUNTRY_ISO,
+    "X-Locale": LOCALE,
 }
 
 
@@ -41,7 +44,7 @@ class GrabApiError(Exception):
 
 
 class GrabFoodApiClient:
-    """Async client for Grab Food Thailand API."""
+    """Async client for Grab Food Singapore API."""
 
     def __init__(
         self,
@@ -59,7 +62,7 @@ class GrabFoodApiClient:
 
     # ── Auth flow ────────────────────────────────────────────────────────
 
-    async def request_otp(self, phone_number: str, country_code: str = "+66") -> None:
+    async def request_otp(self, phone_number: str, country_code: str = DEFAULT_COUNTRY_CODE) -> None:
         """Request an OTP SMS to the given phone number.
 
         Raises GrabApiError when the server rejects the request.
@@ -103,7 +106,7 @@ class GrabFoodApiClient:
         self,
         phone_number: str,
         otp: str,
-        country_code: str = "+66",
+        country_code: str = DEFAULT_COUNTRY_CODE,
     ) -> dict[str, Any]:
         """Verify the OTP and return tokens.
 

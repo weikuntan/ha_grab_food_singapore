@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.1.0] - 2026-10-16
+
+### Singapore port of ha_grab_food_thailand
+
+- New domain `grab_food_sg` so it can coexist with the Thailand integration
+- Region settings centralised in `const.py` (country `SG`, locale `en_SG`, currency `SGD`, `+65`)
+- Price parsing handles `S$` / `SGD` / `$`
+- Token instructions point to food.grab.com/sg
+- API endpoints inherited from the Thailand version and not yet verified against Singapore
+
 ## [1.0.16] - 2026-07-01
 
 ### fix <br> error

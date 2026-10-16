@@ -1,4 +1,4 @@
-"""Config flow for Grab Food Thailand integration."""
+"""Config flow for Grab Food Singapore integration."""
 
 from __future__ import annotations
 
@@ -30,7 +30,7 @@ STEP_SCHEMA = vol.Schema(
 
 
 class GrabFoodConfigFlow(ConfigFlow, domain=DOMAIN):
-    """Config flow for Grab Food Thailand — token only."""
+    """Config flow for Grab Food Singapore — token only."""
 
     VERSION = 1
 
@@ -44,7 +44,7 @@ class GrabFoodConfigFlow(ConfigFlow, domain=DOMAIN):
             refresh_token = user_input.get(CONF_REFRESH_TOKEN, "").strip()
 
             if not is_reauth:
-                uid = f"grab_food_{access_token[:20]}"
+                uid = f"grab_food_sg_{access_token[:20]}"
                 await self.async_set_unique_id(uid)
                 self._abort_if_unique_id_configured()
 
@@ -79,7 +79,7 @@ class GrabFoodConfigFlow(ConfigFlow, domain=DOMAIN):
                         data_updates=entry_data,
                     )
 
-                return self.async_create_entry(title="Grab Food", data=entry_data)
+                return self.async_create_entry(title="Grab Food SG", data=entry_data)
 
         return self.async_show_form(
             step_id="user",

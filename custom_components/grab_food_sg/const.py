@@ -1,8 +1,8 @@
-"""Constants for the Grab Food Thailand integration."""
+"""Constants for the Grab Food Singapore integration."""
 
 from datetime import timedelta
 
-DOMAIN = "grab_food"
+DOMAIN = "grab_food_sg"
 
 # ── Grab API ─────────────────────────────────────────────────────────────────
 GRAB_API_BASE = "https://api.grab.com"
@@ -26,8 +26,16 @@ CONF_ACCESS_TOKEN = "access_token"
 CONF_REFRESH_TOKEN = "refresh_token"
 CONF_TOKEN_EXPIRY = "token_expiry"
 
+# ── Region ───────────────────────────────────────────────────────────────────
+# Everything country-specific lives here so porting to another market is a
+# one-file change.
+COUNTRY_ISO = "SG"
+LOCALE = "en_SG"
+CURRENCY = "SGD"
+CURRENCY_SYMBOLS = ("S$", "SGD", "$")
+
 # ── Defaults ─────────────────────────────────────────────────────────────────
-DEFAULT_COUNTRY_CODE = "+66"  # Thailand
+DEFAULT_COUNTRY_CODE = "+65"  # Singapore
 DEFAULT_SCAN_INTERVAL = timedelta(seconds=30)
 SCAN_INTERVAL_IDLE = timedelta(minutes=5)
 SCAN_INTERVAL_ACTIVE = timedelta(seconds=30)
@@ -57,4 +65,4 @@ ORDER_STATES = [
 ]
 
 # ── Attribution ──────────────────────────────────────────────────────────────
-ATTRIBUTION = "Data provided by Grab Food Thailand"
+ATTRIBUTION = "Data provided by Grab Food Singapore"

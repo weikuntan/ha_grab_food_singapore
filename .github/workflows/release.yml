@@ -25,11 +25,11 @@ jobs:
       - name: Bump version
         id: ver
         run: |
-          CURRENT=$(jq -r '.version' custom_components/grab_food/manifest.json)
+          CURRENT=$(jq -r '.version' custom_components/grab_food_sg/manifest.json)
           IFS='.' read -r MA MI PA <<< "$CURRENT"
           NEW="${MA}.${MI}.$((PA + 1))"
-          jq --arg v "$NEW" '.version = $v' custom_components/grab_food/manifest.json \
-            > /tmp/manifest.json && mv /tmp/manifest.json custom_components/grab_food/manifest.json
+          jq --arg v "$NEW" '.version = $v' custom_components/grab_food_sg/manifest.json \
+            > /tmp/manifest.json && mv /tmp/manifest.json custom_components/grab_food_sg/manifest.json
           echo "new=$NEW" >> "$GITHUB_OUTPUT"
           echo "old=$CURRENT" >> "$GITHUB_OUTPUT"
 
@@ -82,7 +82,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add custom_components/grab_food/manifest.json CHANGELOG.md
+          git add custom_components/grab_food_sg/manifest.json CHANGELOG.md
           git commit -m "chore: release v${VER}"
           git tag "v${VER}"
           git push origin main --follow-tags

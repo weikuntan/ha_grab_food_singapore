@@ -2,8 +2,8 @@
   "config": {
     "step": {
       "user": {
-        "title": "Grab Food Thailand",
-        "description": "Paste your Grab access token.\n\n**Browser:** food.grab.com → F12 → Application → Local Storage → copy `access_token`.\n\n**Android (HTTPCanary):** intercept any Grab request → copy the value after `Authorization: Bearer `.\n\nThe token starts with `eyJ`.",
+        "title": "Grab Food Singapore",
+        "description": "Paste your Grab access token.\n\n**Browser:** food.grab.com/sg → F12 → Application → Local Storage → copy `access_token`.\n\n**Android (HTTPCanary):** intercept any Grab request → copy the value after `Authorization: Bearer `.\n\nThe token starts with `eyJ`.",
         "data": {
           "access_token": "Access token",
           "refresh_token": "Refresh token (optional)"
@@ -36,14 +36,30 @@
           "cancelled": "Cancelled"
         }
       },
-      "restaurant_name": { "name": "Restaurant" },
-      "order_total": { "name": "Order Total" },
-      "estimated_delivery": { "name": "Estimated Delivery" },
-      "driver_name": { "name": "Driver" },
-      "driver_plate": { "name": "Driver Plate" },
-      "item_count": { "name": "Items Ordered" },
-      "order_id": { "name": "Order ID" },
-      "delivery_address": { "name": "Delivery Address" }
+      "restaurant_name": {
+        "name": "Restaurant"
+      },
+      "order_total": {
+        "name": "Order Total"
+      },
+      "estimated_delivery": {
+        "name": "Estimated Delivery"
+      },
+      "driver_name": {
+        "name": "Driver"
+      },
+      "driver_plate": {
+        "name": "Driver Plate"
+      },
+      "item_count": {
+        "name": "Items Ordered"
+      },
+      "order_id": {
+        "name": "Order ID"
+      },
+      "delivery_address": {
+        "name": "Delivery Address"
+      }
     }
   }
 }

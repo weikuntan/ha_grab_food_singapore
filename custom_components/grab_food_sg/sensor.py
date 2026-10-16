@@ -1,4 +1,4 @@
-"""Sensor platform for Grab Food Thailand."""
+"""Sensor platform for Grab Food Singapore."""
 
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ from homeassistant.helpers.device_registry import DeviceEntryType, DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import ATTRIBUTION, DOMAIN, ORDER_STATES
+from .const import ATTRIBUTION, CURRENCY, DOMAIN, ORDER_STATES
 from .coordinator import GrabFoodCoordinator
 
 
@@ -50,10 +50,10 @@ SENSOR_DESCRIPTIONS: tuple[GrabFoodSensorEntityDescription, ...] = (
         translation_key="order_total",
         icon="mdi:cash",
         device_class=SensorDeviceClass.MONETARY,
-        native_unit_of_measurement="THB",
+        native_unit_of_measurement=CURRENCY,
         suggested_display_precision=0,
         value_fn=lambda d: d.get("total"),
-        extra_attrs_fn=lambda d: {"currency": d.get("currency", "THB")},
+        extra_attrs_fn=lambda d: {"currency": d.get("currency", CURRENCY)},
     ),
     GrabFoodSensorEntityDescription(
         key="estimated_delivery",
@@ -133,9 +133,9 @@ class GrabFoodSensor(CoordinatorEntity[GrabFoodCoordinator], SensorEntity):
         )
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, coordinator.config_entry.entry_id)},
-            name="Grab Food",
+            name="Grab Food SG",
             manufacturer="Grab Holdings",
-            model="Grab Food Thailand",
+            model="Grab Food Singapore",
             entry_type=DeviceEntryType.SERVICE,
         )
 

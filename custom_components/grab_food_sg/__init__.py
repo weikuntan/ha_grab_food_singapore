@@ -1,4 +1,4 @@
-"""Grab Food Thailand integration for Home Assistant."""
+"""Grab Food Singapore integration for Home Assistant."""
 
 from __future__ import annotations
 
@@ -24,7 +24,7 @@ PLATFORMS: list[Platform] = [Platform.SENSOR]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Set up Grab Food Thailand from a config entry."""
+    """Set up Grab Food Singapore from a config entry."""
     session = async_get_clientsession(hass)
 
     client = GrabFoodApiClient(

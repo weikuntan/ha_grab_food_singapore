@@ -1,4 +1,4 @@
-"""DataUpdateCoordinator for Grab Food Thailand."""
+"""DataUpdateCoordinator for Grab Food Singapore."""
 
 from __future__ import annotations
 
@@ -16,6 +16,8 @@ from .const import (
     CONF_ACCESS_TOKEN,
     CONF_REFRESH_TOKEN,
     CONF_TOKEN_EXPIRY,
+    CURRENCY,
+    CURRENCY_SYMBOLS,
     DOMAIN,
     SCAN_INTERVAL_ACTIVE,
     SCAN_INTERVAL_IDLE,
@@ -184,7 +186,7 @@ class GrabFoodCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             "status": str(status).lower().replace(" ", "_"),
             "restaurant_name": restaurant_name,
             "total": total,
-            "currency": merged.get("currency", "THB"),
+            "currency": merged.get("currency", CURRENCY),
             "eta": eta,
             "eta_raw": eta_raw,
             "driver_name": driver_name,
@@ -205,7 +207,7 @@ class GrabFoodCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             "status": "no_active_order",
             "restaurant_name": "",
             "total": None,
-            "currency": "THB",
+            "currency": CURRENCY,
             "eta": None,
             "eta_raw": None,
             "driver_name": "",
@@ -228,7 +230,10 @@ class GrabFoodCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         if isinstance(value, dict):
             return float(value.get("amount", 0))
         try:
-            return float(str(value).replace(",", "").replace("฿", "").strip())
+            cleaned = str(value).replace(",", "")
+            for symbol in CURRENCY_SYMBOLS:
+                cleaned = cleaned.replace(symbol, "")
+            return float(cleaned.strip())
         except (ValueError, TypeError):
             return None
 
